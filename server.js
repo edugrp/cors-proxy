@@ -25,12 +25,25 @@ app.use('*', function (req, res, next) {
             res.send(500, { error: 'There is no Target-URL header in the request' });
             return;
         }
+        console.log('---------------------------------------------');
+        console.log('Resquest: ', Date);
+        console.log('URL: ', targetURL + req.url);
+        console.log('method: ', req.method);
+        console.log('incoming header: ', req.headers);
+        console.log('body: ',req.body);
+        var headers = { 
+            'Content-Type': 'application/json',
+            'Ocp-Apim-Subscription-Key': req.header('Ocp-Apim-Subscription-Key'),
+        };
+        console.log('headers: ', headers);
 
-        request({ url: targetURL + req.url, method: req.method, json: req.body, header: req.header },
+        request({ url: targetURL + req.url, method: req.method, json: req.body, headers: headers },
             function (error, response, body) {
+                console.log('---------------------------------------------');
                 if (error) {
                     console.error('error: ' + response.statusCode);
                 }
+                console.log('Body: ', body);
             }).pipe(res);
     }
 
