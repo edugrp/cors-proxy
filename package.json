@@ -1,0 +1,11 @@
+{
+  "name": "cors-proxy",
+  "version": "1.0.0",
+  "description": "Simple CORS Proxy",
+  "private": true,
+  "dependencies": {
+    "express": "~4.4.3",
+    "request": "~2.36.0",
+    "body-parser": "~1.5.2"
+  }
+}
